@@ -23,6 +23,8 @@ define('FORMPARDAKHT_VERSION', '1.0.0');
 define('FORMPARDAKHT_URL', 'https://formpardakht.com/latest.zip');
 define('FORMPARDAKHT__PLUGIN_DIR', plugin_dir_path(__FILE__));
 
+include(__DIR__ . '/functions.php');
+
 register_activation_hook(__FILE__, 'formpardakht_activation');
 register_deactivation_hook(__FILE__, 'formpardakht_deactivation');
 register_uninstall_hook(__FILE__, 'formpardakht_uninstall');
@@ -61,10 +63,10 @@ function formpardakht_uninstall()
 
     $drop = "DROP TABLE IF EXISTS fp_transactions";
     $wpdb->query($drop);
-    
+
     $installDir = get_home_path() . get_option('formpardakht_directory');
-    if(file_exists($installDir)) {
-        //
+    if (file_exists($installDir)) {
+        formpardakht_delete_dir($installDir);
     }
 
     delete_option('formpardakht_installed');
