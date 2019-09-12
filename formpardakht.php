@@ -109,10 +109,3 @@ function formpardakht_admin_content()
 {
     include(FORMPARDAKHT__PLUGIN_DIR . '/admin.php');
 }
-
-function formpardakht_scripts()
-{
-    wp_register_style('foo-styles',  plugin_dir_url(__FILE__) . 'installer/install.css');
-    wp_enqueue_style('foo-styles');
-}
-add_action('wp_enqueue_scripts', 'formpardakht_scripts');
