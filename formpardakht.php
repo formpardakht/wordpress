@@ -4,7 +4,7 @@
  * @package Formpardakht
  */
 /*
-Plugin Name: اسکریپت فرم پرداخت پِی
+Plugin Name: FormPardakht
 Plugin URI: https://formpardakht.com/
 Description: اسکریپت فرم پرداخت پِی با قابلیت ایجاد بی نهایت فرم پرداخت و فاکتور پرداخت و فروش فایل
 Version: 1.0.0
