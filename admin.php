@@ -45,7 +45,7 @@
                     update_option('formpardakht_directory', $_POST['directory']);
 
                     echo "<div class='notice notice-success is-dismissible'><p>در حال هدایت به صفحه تکمیل نصب اسکریپت...</p></div>";
-                    echo "<script>setTimeout(function() {window.location.href = '" . $siteUrl . '?' . http_build_query($data) . "'}, 500)</script>";
+                    echo "<script>setTimeout(function() {window.location.href = '" . $siteUrl . '/install/complete-ez?' . http_build_query($data) . "'}, 500)</script>";
                     return;
                 } else {
                     echo "<div class='notice notice-error is-dismissible'><p>لطفا تمام فیلد های ضروری را تکمیل کنید</p></div>";
@@ -58,13 +58,34 @@
         }
     }
     if (isset($_POST['save'])) {
-        //
+        if (isset($_POST['directory']) && $_POST['directory']) {
+            $oldInstallDir = get_home_path() . get_option('formpardakht_directory');
+            $installDir = get_home_path() . $_POST['directory'];
+            if (!file_exists($installDir)) {
+                rename($oldInstallDir, $installDir);
+                update_option('formpardakht_directory', $_POST['directory']);
+
+                echo "<div class='notice notice-success is-dismissible'><p>محل نصب اسکریپت تغییر یافت</p></div>";
+            } else {
+                echo "<div class='notice notice-error is-dismissible'><p>فولدر نصب از قبل موجود می باشد. لطفا مسیر دیگری برای نصب انتخاب کنید</p></div>";
+            }
+        } else {
+            echo "<div class='notice notice-error is-dismissible'><p>وارد کردن محل نصب الزامی می باشد</p></div>";
+        }
     }
     ?>
     <?php if (get_option('formpardakht_installed')) : ?>
         <h1>تنظیمات اسکریپت فرم پرداخت</h1>
         <form method="post">
             <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">
+                        <label>بخش مدیریت اسکریپت</label>
+                    </th>
+                    <td>
+                        <a href="<?= get_option('siteurl') . get_option('formpardakht_directory') ?>/login" target="_blank"><?= get_option('siteurl') . get_option('formpardakht_directory') ?>/login</a>
+                    </td>
+                </tr>
                 <tr valign="top">
                     <th scope="row">
                         <label for="directory">محل نصب اسکریپت</label> <span style="color: red">*</span>
@@ -86,7 +107,7 @@
                         <label for="directory">محل نصب اسکریپت</label> <span style="color: red">*</span>
                     </th>
                     <td>
-                        <input type="text" id="directory" name="directory" value="/pay" style="direction: ltr" />
+                        <input type="text" id="directory" name="directory" value="/formpardakht" style="direction: ltr" />
                         <span><?= get_option('siteurl') ?></span>
                     </td>
                 </tr>
