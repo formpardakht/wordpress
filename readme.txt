@@ -1,9 +1,11 @@
 === اسکریپت فرم پرداخت پِی ===
 Contributors: formpardakht
+Donate link: https://me.pay.ir/saeed
 Home: https://formpardakht.com/
 Tags: payment form, pay.ir, فرم پرداخت, اسکریپت فرم پرداخت, شبکه پرداخت پِی
 Requires at least: 4.0
 Tested up to: 5.2
+Stable tag: 1.0
 Requires PHP: 5.6
 License: MIT
 
